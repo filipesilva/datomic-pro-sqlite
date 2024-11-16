@@ -1,0 +1,20 @@
+db_name = System.getenv("DATOMIC_DB");
+if (db_name == null || db_name.isEmpty()) {
+   db_name = "app";
+}
+db_uri = "datomic:sql://" + db_name + "?jdbc:sqlite:/usr/storage/sqlite.db";
+for (int i = 0; i < 20; i++) {
+    Thread.sleep(3000);
+    System.out.println("Testing connection to db " + db_name + "...");
+    try {
+        if (Peer.createDatabase(db_uri)) {
+            System.out.println("Created database " + db_name);
+        }
+        System.out.println("Connect using DB URI datomic:sql://" + db_name + "?jdbc:sqlite:<LOCAL/PATH/TO/sqlite.db>");
+        System.out.println("  e.g. datomic:sql://app?jdbc:sqlite:./storage/sqlite.db if you mounted ./storage");
+        System.exit(0);
+    } catch (Exception e) {
+        // System.out.println(e.getMessage());
+    }
+}
+System.out.println("WARNING: Could not create or connect to database " + db_name + " after 10s.");

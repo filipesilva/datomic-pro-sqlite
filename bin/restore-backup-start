@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# get mbrainz backup if we don't have it yet
+if [ ! -d "mbrainz-1968-1973" ]; then
+    curl https://s3.amazonaws.com/mbrainz/datomic-mbrainz-1968-1973-backup-2017-07-20.tar -o mbrainz.tar
+    tar -xvf mbrainz.tar
+fi
+
+# mount mbrainz
+docker run -p 4334:4334 -v ./storage:/usr/storage -v ./mbrainz-1968-1973:/usr/restore -v ./backup:/usr/backup --name datomic-pro-sqlite-demo --rm filipesilva/datomic-pro-sqlite:latest

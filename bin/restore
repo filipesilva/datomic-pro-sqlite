@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+docker exec datomic-pro-sqlite-demo /usr/datomic-pro/bin/datomic restore-db file:///usr/restore/ datomic:sql://mbrainz-1968-1973?jdbc:sqlite:/usr/storage/sqlite.db

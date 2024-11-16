@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+docker run -p 4334:4334 -v ./storage:/usr/storage --name datomic-pro-sqlite-demo --rm filipesilva/datomic-pro-sqlite:latest

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# SET THIS
+# use datomic version, and don't commit the change
+tag=""
+
+# Check if the variable is empty
+if [ -z "$tag" ]; then
+  echo "ERROR: tag empty, set it before pushing!"
+  exit 1
+fi
+
+docker tag filipesilva/datomic-pro-sqlite:latest filipesilva/datomic-pro-sqlite:$tag
+docker push filipesilva/datomic-pro-sqlite:$tag
+docker push filipesilva/datomic-pro-sqlite:latest
