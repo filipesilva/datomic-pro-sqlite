@@ -1,11 +1,29 @@
 # Datomic Pro SQLite
 
-Get started with Datomic Pro quickly on a single machine setup that will take you pretty far.
+Get started with [Datomic Pro](https://www.datomic.com) quickly on a single machine setup that will take you pretty far.
 
 Inspired by how Rails 8 now [uses SQLite for production](https://youtu.be/l56IBad-5aQ).
 
 Links: [GitHub](https://github.com/filipesilva/datomic-pro-sqlite) [DockerHub](https://hub.docker.com/r/filipesilva/datomic-pro-sqlite)
 
+
+## Quickstart
+
+- run `docker run -p 4334:4334 -v ./storage:/usr/storage --name datomic-pro-sqlite-demo --rm filipesilva/datomic-pro-sqlite:latest`
+- wait until it says `Connect using DB URI datomic:sql://app?jdbc:sqlite:<LOCAL/PATH/TO/sqlite.db>`
+- connect from your clojure app or from a `clj` REPL:
+``` clojure
+(add-libs {'com.datomic/peer       {:mvn/version "1.0.7187"}
+           'org.xerial/sqlite-jdbc {:mvn/version "3.47.0.0"}})
+(require '[datomic.api :as d])
+
+(def db-uri "datomic:sql://app?jdbc:sqlite:./storage/sqlite.db")
+(def conn (d/connect db-uri))
+
+(d/transact conn [{:db/ident :foo}])
+(d/pull (d/db conn) '[*] :foo)
+;; => #:db{:id 17592186045417, :ident :foo}
+```
 
 ## Usage
 
@@ -23,11 +41,11 @@ You should see this output:
 Creating sqlite database at /usr/storage/sqlite.db
 Launching with Java options -server -Xms1g -Xmx1g -XX:+UseG1GC -XX:MaxGCPauseMillis=50
 System started
-Testing connection to db app...
-Testing connection to db app...
-Testing connection to db app...
-Testing connection to db app...
-Created database app
+Testing connection to database 'app'...
+Testing connection to database 'app'...
+Testing connection to database 'app'...
+Testing connection to database 'app'...
+Created database 'app'
 Connect using DB URI datomic:sql://app?jdbc:sqlite:<LOCAL/PATH/TO/sqlite.db>
   e.g. datomic:sql://app?jdbc:sqlite:./storage/sqlite.db if you mounted ./storage
 ```
