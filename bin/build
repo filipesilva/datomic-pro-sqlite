@@ -1,3 +1,20 @@
 #!/usr/bin/env sh
 
-docker build --platform linux/amd64,linux/arm64 --tag filipesilva/datomic-pro-sqlite:latest image/
+# used to build for --platform linux/amd64,linux/arm64
+# but started getting this error when running the linux/arm64 one:
+#
+# /usr/local/bin/entrypoint: line 19:     7 Aborted                 "${entrypoint}" "${cmd}" --help > /dev/null 2>&1
+# Launching with Java options -server -Xms1g -Xmx1g -XX:+UseG1GC -XX:MaxGCPauseMillis=50
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGILL (0x4) at pc=0x0000ffff93c67c5c, pid=32, tid=33
+#
+# JRE version:  (21.0.5+11) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.5+11-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-aarch64)
+# Problematic frame:
+# j  java.lang.System.registerNatives()V+0 java.base@21.0.5
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+
+docker build --platform linux/amd64 --tag filipesilva/datomic-pro-sqlite:latest image/
