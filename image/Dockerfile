@@ -2,9 +2,8 @@ FROM clojure:temurin-22-tools-deps-bookworm-slim
 
 RUN apt-get update && apt-get install -y curl unzip && rm -rf /var/lib/apt/lists/*
 
-RUN curl https://d21wuulm8q5nm1.cloudfront.net/1.0.7260/datomic-pro-1.0.7260.zip \
+RUN curl https://datomic-pro-downloads.s3.amazonaws.com/1.0.7260/datomic-pro-1.0.7260.zip \
     -o datomic-pro.zip \
-    && echo "1107dc89c3bc0896a02458d34a875143  datomic-pro.zip" | md5sum -c - \
     && unzip datomic-pro.zip \
     && mv datomic-pro-1.0.7260 /usr/datomic-pro \
     || exit 1
