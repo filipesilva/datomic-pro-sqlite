@@ -13,7 +13,7 @@ Links: [GitHub](https://github.com/filipesilva/datomic-pro-sqlite) [DockerHub](h
 - wait until it says `Connect using DB URI datomic:sql://app?jdbc:sqlite:<LOCAL/PATH/TO/sqlite.db>`
 - connect from your clojure app or from a `clj` REPL:
 ``` clojure
-(add-libs {'com.datomic/peer       {:mvn/version "1.0.7260"}
+(add-libs {'com.datomic/peer       {:mvn/version "1.0.7364"}
            'org.xerial/sqlite-jdbc {:mvn/version "3.47.0.0"}})
 (require '[datomic.api :as d])
 
@@ -57,7 +57,7 @@ Start a new clojure repl with `clj` and use the database.
 You will need the SQLite driver dependency in addition to Datomic.
 
 ```clojure
-(add-libs {'com.datomic/peer       {:mvn/version "1.0.7260"}
+(add-libs {'com.datomic/peer       {:mvn/version "1.0.7364"}
            'org.xerial/sqlite-jdbc {:mvn/version "3.47.0.0"}})
 (require '[datomic.api :as d])
 
