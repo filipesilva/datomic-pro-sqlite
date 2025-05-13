@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
 COPY --from=0 /usr/datomic-pro /usr/datomic-pro
 COPY transactor.properties /usr/datomic-pro/config/
 COPY create-db.bsh /usr/create-db.bsh
+HEALTHCHECK CMD /usr/bin/env sh -c '[ -f "/usr/datomic-pro/db_ready" ]' || exit 1
 COPY start.sh /usr/start.sh
 RUN chmod +x /usr/start.sh
 
