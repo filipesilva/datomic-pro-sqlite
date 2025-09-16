@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y curl unzip && rm -rf /var/lib/apt/lists
 ARG DATOMIC_VERSION="1.0.7394"
 RUN curl https://datomic-pro-downloads.s3.amazonaws.com/${DATOMIC_VERSION}/datomic-pro-${DATOMIC_VERSION}.zip \
     -o datomic-pro.zip \
-    && echo "8e3a6334dfc728c1c431dccc537dc88a9d2baf70f29bad5438df9d7c8c7146ae  datomic-pro.zip" | sha256sum datomic-pro.zip \
+    && echo "8e3a6334dfc728c1c431dccc537dc88a9d2baf70f29bad5438df9d7c8c7146ae  datomic-pro.zip" | sha256sum -c - \
     && unzip datomic-pro.zip \
     && mv datomic-pro-${DATOMIC_VERSION} /usr/datomic-pro \
     || exit 1
