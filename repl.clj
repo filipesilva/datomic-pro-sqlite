@@ -1,5 +1,5 @@
-(add-libs {'com.datomic/peer       {:mvn/version "1.0.7364"}
-           'org.xerial/sqlite-jdbc {:mvn/version "3.47.0.0"}})
+(add-libs {'com.datomic/peer       {:mvn/version "1.0.7394"}
+           'org.xerial/sqlite-jdbc {:mvn/version "3.50.3.0"}})
 (require '[datomic.api :as d])
 
 (def db-uri "datomic:sql://app?jdbc:sqlite:./storage/sqlite.db")
