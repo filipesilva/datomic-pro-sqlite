@@ -14,7 +14,7 @@ PRAGMA journal_size_limit = 67108864; -- 64 megabytes
 PRAGMA cache_size = 2000;
 
 -- datomic schema
-CREATE TABLE datomic_kvs (
+CREATE TABLE IF NOT EXISTS datomic_kvs (
     id TEXT NOT NULL,
     rev INTEGER,
     map TEXT,
